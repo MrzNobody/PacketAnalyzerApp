@@ -127,12 +127,13 @@ self.addEventListener("message", async (e) => {
       type: i % 4 === 0 ? 'Router' : (i % 4 === 1 ? 'Switch' : 'Server')
     }));
 
-    const callCount = Math.max(5, Math.floor(sipCount / 5));
     const callRecords = Array.from({ length: callCount }, (_, i) => ({
       id: `C${i + 1}`,
       time: `10:${String(Math.floor(i * 2) % 60).padStart(2,'0')}:${String((i * 7) % 60).padStart(2,'0')}`,
       caller: PHONE_NUMS[i % PHONE_NUMS.length],
       callee: DEST_NUMS[i % DEST_NUMS.length],
+      srcIp: SRC_IPS[i % SRC_IPS.length],
+      dstIp: DST_IPS[i % DST_IPS.length],
       status: i % 10 === 0 ? 'Forbidden' : (i % 15 === 0 ? 'Busy' : 'Completed'),
       mos: +(3.5 + (i % 13) / 10).toFixed(1),
       jitter: `${2 + (i % 12)}ms`,

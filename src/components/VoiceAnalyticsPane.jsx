@@ -22,45 +22,45 @@ const MOCK_SIP_LADDER_FAILED = [
 
 const MOCK_CALL_RECORDS = [
   { 
-    id: 'C1', time: '10:23:45', caller: '+15615550101', callee: '+15615550199', status: 'Completed', duration: '14m 02s', jitter: '2.1ms', mos: 4.4,
+    id: 'C1', time: '10:23:45', caller: '+15615550101', callee: '+15615550199', srcIp: '151.132.10.15', dstIp: '104.26.10.233', status: 'Completed', duration: '14m 02s', jitter: '2.1ms', mos: 4.4,
     insight: null, userAgent: 'PolycomVVX-VVX410-UA/5.9.5.0614'
   },
   { 
-    id: 'C2', time: '10:28:12', caller: '+15615550105', callee: '+15615550199', status: 'Busy', duration: '0s', jitter: '-', mos: '-',
+    id: 'C2', time: '10:28:12', caller: '+15615550105', callee: '+15615550199', srcIp: '151.132.22.8', dstIp: '104.26.10.233', status: 'Busy', duration: '0s', jitter: '-', mos: '-',
     insight: { reason: 'User is currently on another call (SIP 486 Busy Here).', action: 'No action needed. Target device is functioning normally.' }, 
     userAgent: 'Cisco-CP8841/12.5.1'
   },
   { 
-    id: 'C3', time: '10:45:30', caller: '+15615550101', callee: '+18005550123', status: 'Completed', duration: '03m 45s', jitter: '8.4ms', mos: 3.2,
+    id: 'C3', time: '10:45:30', caller: '+15615550101', callee: '+18005550123', srcIp: '151.132.10.15', dstIp: '8.8.8.8', status: 'Completed', duration: '03m 45s', jitter: '8.4ms', mos: 3.2,
     insight: { reason: 'Network congestion detected on outbound gateway.', action: 'Investigate jitter buffer settings on trunk interface (+15615550100).' },
     userAgent: 'PolycomVVX-VVX410-UA/5.9.5.0614'
   },
   { 
-    id: 'C4', time: '11:02:15', caller: '+15615550112', callee: '+15615550101', status: 'Forbidden', duration: '0s', jitter: '-', mos: '-',
+    id: 'C4', time: '11:02:15', caller: '+15615550112', callee: '+15615550101', srcIp: '192.168.1.15', dstIp: '151.132.10.15', status: 'Forbidden', duration: '0s', jitter: '-', mos: '-',
     insight: { reason: 'SIP Authentication credentials mismatched (Digest Auth failure).', action: 'Verify SIP password on handset (+15615550112) and PBX configuration.' },
     userAgent: 'Zoiper rv2.10.11.7-mod'
   },
   { 
-    id: 'C5', time: '11:15:00', caller: '+15615550101', callee: '+15615550100', status: 'Completed', duration: '22m 10s', jitter: '1.4ms', mos: 4.8,
+    id: 'C5', time: '11:15:00', caller: '+15615550101', callee: '+15615550100', srcIp: '151.132.10.15', dstIp: '151.132.0.1', status: 'Completed', duration: '22m 10s', jitter: '1.4ms', mos: 4.8,
     insight: null, userAgent: 'Cisco-CP8861/14.0.1'
   },
   { 
-    id: 'C6', time: '11:32:40', caller: '+18885550999', callee: '+15615550101', status: 'Not Found', duration: '0s', jitter: '-', mos: '-',
+    id: 'C6', time: '11:32:40', caller: '+18885550999', callee: '+15615550101', srcIp: '172.67.74.152', dstIp: '151.132.10.15', status: 'Not Found', duration: '0s', jitter: '-', mos: '-',
     insight: { reason: 'Dialed extension does not exist on the local registrar (SIP 404).', action: 'Check dial plan configuration on the Core PBX.' },
     userAgent: 'SBC-Gateway-Internal'
   },
   { 
-    id: 'C7', time: '11:45:12', caller: '+15615550105', callee: '+19005550111', status: 'Service Unavailable', duration: '0s', jitter: '-', mos: '-',
+    id: 'C7', time: '11:45:12', caller: '+15615550105', callee: '+19005550111', srcIp: '151.132.22.8', dstIp: '34.212.110.5', status: 'Service Unavailable', duration: '0s', jitter: '-', mos: '-',
     insight: { reason: 'Outbound trunk carrier rejected the call due to credit limit (SIP 503).', action: 'Verify account balance with SIP Provider (Level3/Lumen).' },
     userAgent: 'Cisco-CP8841/12.5.1'
   },
   { 
-    id: 'C8', time: '12:01:05', caller: '+15615550112', callee: '+15615550199', status: 'Timeout', duration: '32s', jitter: '-', mos: '-',
+    id: 'C8', time: '12:01:05', caller: '+15615550112', callee: '+15615550199', srcIp: '192.168.1.15', dstIp: '104.26.10.233', status: 'Timeout', duration: '32s', jitter: '-', mos: '-',
     insight: { reason: 'No response from destination gateway (SIP 408 Request Timeout).', action: 'Check connectivity to peer trunk (+18885550000).' },
     userAgent: 'Zoiper rv2.10.11.7-mod'
   },
   { 
-    id: 'C9', time: '12:05:40', caller: '+15615550112', callee: '+15615550199', status: 'Timeout', duration: '0s', jitter: '-', mos: '-',
+    id: 'C9', time: '12:05:40', caller: '+15615550112', callee: '+15615550199', srcIp: '192.168.1.15', dstIp: '104.26.10.233', status: 'Timeout', duration: '0s', jitter: '-', mos: '-',
     insight: { reason: 'No response from destination gateway (SIP 408 Request Timeout).', action: 'Check connectivity to peer trunk (+18885550000).' },
     userAgent: 'Zoiper rv2.10.11.7-mod'
   },
@@ -207,12 +207,12 @@ export default function VoiceAnalyticsPane() {
             <div className="p-8 relative min-h-[360px]">
               <div className="flex justify-between text-[11px] font-bold text-[var(--text-secondary)] mb-10 px-12 uppercase tracking-widest">
                 <div className="flex flex-col items-center">
-                  <span>{activeCall?.caller}</span>
-                  <span className="text-[9px] mt-1 text-blue-400 font-medium whitespace-nowrap">Caller ID / Origin</span>
+                  <span className="text-[13px] font-mono text-[var(--text-color)]">{activeCall?.srcIp || 'Internal'}</span>
+                  <span className="text-[9px] mt-1 text-blue-400 font-medium whitespace-nowrap tracking-normal">Technical Source / IP</span>
                 </div>
                 <div className="flex flex-col items-center">
-                  <span>{activeCall?.callee}</span>
-                  <span className="text-[9px] mt-1 text-purple-400 font-medium whitespace-nowrap">Dialed Number / Callee</span>
+                  <span className="text-[13px] font-mono text-[var(--text-color)]">{activeCall?.dstIp || 'Gateway'}</span>
+                  <span className="text-[9px] mt-1 text-purple-400 font-medium whitespace-nowrap tracking-normal">Technical Destination / IP</span>
                 </div>
               </div>
 
