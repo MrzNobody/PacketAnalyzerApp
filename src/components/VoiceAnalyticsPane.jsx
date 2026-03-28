@@ -59,6 +59,11 @@ const MOCK_CALL_RECORDS = [
     insight: { reason: 'No response from destination gateway (SIP 408 Request Timeout).', action: 'Check connectivity to peer trunk (+18885550000).' },
     userAgent: 'Zoiper rv2.10.11.7-mod'
   },
+  { 
+    id: 'C9', time: '12:05:40', caller: '+15615550112', callee: '+15615550199', status: 'Timeout', duration: '0s', jitter: '-', mos: '-',
+    insight: { reason: 'No response from destination gateway (SIP 408 Request Timeout).', action: 'Check connectivity to peer trunk (+18885550000).' },
+    userAgent: 'Zoiper rv2.10.11.7-mod'
+  },
 ];
 
 const MOCK_SIP_METHODS = [
@@ -85,8 +90,21 @@ export default function VoiceAnalyticsPane() {
     (session.isActive && session.aggregations?.sipMethods) ? session.aggregations.sipMethods : MOCK_SIP_METHODS
   , [session.aggregations, session.isActive]);
 
-  const failedCalls = useMemo(() => {
-    return callRecords.filter(c => c.status !== 'Completed');
+  const groupedFailedCalls = useMemo(() => {
+    const groups = {};
+    callRecords.filter(c => c.status !== 'Completed').forEach(call => {
+      const key = `${call.caller}-${call.callee}`;
+      if (!groups[key]) {
+        groups[key] = { ...call, attempts: 1 };
+      } else {
+        groups[key].attempts += 1;
+        // Keep the latest call data for status/time
+        groups[key].time = call.time;
+        groups[key].status = call.status;
+        groups[key].id = call.id;
+      }
+    });
+    return Object.values(groups);
   }, [callRecords]);
 
   const filteredCalls = useMemo(() => {
@@ -241,13 +259,13 @@ export default function VoiceAnalyticsPane() {
                 <BookUser className="w-4 h-4 text-red-500" />
                 <h3 className="text-[13px] font-semibold text-[var(--text-color)]">Failed SIP Sessions</h3>
                 <span className="ml-auto text-[10px] font-mono text-[var(--text-secondary)] bg-[var(--bg-color)] border border-[var(--border-color)] px-1.5 py-0.5 rounded-md">
-                  {failedCalls.length} issues
+                  {groupedFailedCalls.length} issues
                 </span>
               </div>
 
               {/* Entry list */}
               <div className="flex-1 overflow-y-auto divide-y divide-[var(--border-color)] custom-scroll">
-                {failedCalls.map((call) => (
+                {groupedFailedCalls.map((call) => (
                   <button
                     key={call.id}
                     onClick={() => handleViewLadder(call.id)}
@@ -256,14 +274,19 @@ export default function VoiceAnalyticsPane() {
                     }`}
                   >
                     {/* From: → To: */}
-                    <div className="flex flex-col gap-1 mb-2">
+                    <div className="flex flex-col gap-1 mb-2 relative">
+                      {call.attempts > 1 && (
+                        <div className="absolute top-0 right-0 bg-red-500/15 border border-red-500/20 px-1.5 py-0.5 rounded text-[10px] font-bold text-red-500">
+                          {call.attempts} attempts
+                        </div>
+                      )}
                       <div className="flex items-center gap-2">
                         <span className="text-[9px] font-bold text-red-500/60 uppercase w-8">From:</span>
-                        <span className="text-[13px] font-bold font-mono text-[var(--text-color)] truncate">{call.caller}</span>
+                        <span className="text-[13px] font-bold font-mono text-[var(--text-color)] truncate pr-16">{call.caller}</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="text-[9px] font-bold text-red-500/60 uppercase w-8">To:</span>
-                        <span className="text-[13px] font-bold font-mono text-[var(--text-color)] truncate">{call.callee}</span>
+                        <span className="text-[13px] font-bold font-mono text-[var(--text-color)] truncate pr-16">{call.callee}</span>
                       </div>
                     </div>
 

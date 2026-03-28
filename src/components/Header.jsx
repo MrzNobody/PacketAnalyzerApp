@@ -1,8 +1,8 @@
-import { Shield, Share2, Moon, Sun, Search, LayoutTemplate, Phone } from 'lucide-react';
+import { Shield, Share2, Moon, Sun, Search, LayoutTemplate, Phone, RotateCcw } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { useData } from '../context/DataContext';
 
-export default function Header({ activeTab, onTabChange, showTabs = false, onExport, onSave }) {
+export default function Header({ activeTab, onTabChange, showTabs = false, onExport, onSave, onClear }) {
   const { isDark, toggle } = useTheme();
   const { globalSearch, setGlobalSearch } = useData();
 
@@ -84,6 +84,17 @@ export default function Header({ activeTab, onTabChange, showTabs = false, onExp
           <Share2 className="w-3.5 h-3.5" />
           <span className="hidden sm:inline">Export Report</span>
         </button>
+
+        {showTabs && (
+          <button
+            onClick={onClear}
+            className="flex items-center gap-1.5 text-sm font-medium border border-red-500/30 text-red-500 px-3 py-1.5 rounded-lg hover:bg-red-500/5 transition-colors"
+            title="Clear current capture and restart parser"
+          >
+            <RotateCcw className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Clear & Restart</span>
+          </button>
+        )}
       </div>
     </header>
   );

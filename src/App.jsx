@@ -88,7 +88,7 @@ function ParsingOverlay() {
 }
 
 function AppContent() {
-  const { session } = useData();
+  const { session, terminateSession } = useData();
   const [activeTab, setActiveTab] = useState('dashboard');
   const [showSourcesModal, setShowSourcesModal] = useState(true);
   const [showExportModal, setShowExportModal] = useState(false);
@@ -114,6 +114,13 @@ function AppContent() {
     URL.revokeObjectURL(url);
   };
 
+  const handleClearAndRestart = () => {
+    if (window.confirm('Are you sure you want to clear this session and restart? All unsaved data will be lost.')) {
+      terminateSession();
+      setActiveTab('dashboard'); // Re-default to dashboard tab for next file
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[var(--bg-color)] flex flex-col">
       {showSourcesModal && <SourcesIntegrityModal onDismiss={() => setShowSourcesModal(false)} />}
@@ -125,6 +132,7 @@ function AppContent() {
         onTabChange={setActiveTab}
         onExport={() => setShowExportModal(true)}
         onSave={handleSaveState}
+        onClear={handleClearAndRestart}
       />
 
       <main className="flex-1 flex flex-col overflow-hidden">

@@ -62,6 +62,9 @@ export default function TopTalkersPane() {
                   {t.ipv6 ? 'IPv6' : 'IPv4'}
                 </span>
                 <span className="text-[12px] font-mono text-[var(--text-color)] truncate">{t.ip}</span>
+                {t.vendor === 'Enterprise Asset' && (
+                  <span className="text-[9px] font-bold bg-green-500/10 text-green-500 px-1.5 py-0.5 rounded-md uppercase tracking-tighter">Enterprise</span>
+                )}
                 <span className="text-[11px] text-[var(--text-secondary)] hidden group-hover:inline">{t.vendor}</span>
               </div>
               <span className="text-[11px] font-semibold text-[var(--text-secondary)] shrink-0">{fmtBytes(t.bytes)}</span>

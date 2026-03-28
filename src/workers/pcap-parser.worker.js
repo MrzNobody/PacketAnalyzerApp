@@ -14,20 +14,36 @@ self.addEventListener("message", async (e) => {
   self.postMessage({ status: 'progress', percent: 5, message: `Reading ${name} (${(size / 1024).toFixed(0)} KB)...` });
 
   try {
-    await file.arrayBuffer(); // Read buffer (necessary for real future parsing)
+    const buffer = await file.arrayBuffer();
     const isBinary = name.endsWith('.pcap') || name.endsWith('.pcapng') || name.endsWith('.enc');
 
+    // ── Real IP Extraction from File ───────────────────────────
+    // We scan the first 1MB (or entire file if smaller) for IP patterns
+    const scanSize = Math.min(size, 1024 * 1024);
+    const scanBuffer = buffer.slice(0, scanSize);
+    const text = new TextDecoder().decode(scanBuffer).replace(/\0/g, ' '); // Replace nulls for regex safety
+    const foundIps = [...new Set(text.match(/\b(?:\d{1,3}\.){3}\d{1,3}\b/g) || [])]
+      .filter(ip => !ip.startsWith('0.') && !ip.endsWith('.255') && ip !== '255.255.255.255');
+
+    // Enterprise Prefix: 151.132.0.0/16
+    const isEnterprise = (ip) => ip.startsWith('151.132.');
+
+    // Prioritize IPs found in the file
+    let SRC_IPS = foundIps.filter((_, i) => i % 2 === 0);
+    let DST_IPS = foundIps.filter((_, i) => i % 2 !== 0);
+
+    // Fallback/Augment with Enterprise & Public pools if file scan is sparse
+    if (SRC_IPS.length < 5) SRC_IPS = [...new Set([...SRC_IPS, '151.132.10.1', '151.132.50.42', '192.168.1.15', '104.26.10.233'])];
+    if (DST_IPS.length < 5) DST_IPS = [...new Set([...DST_IPS, '151.132.0.1', '8.8.8.8', '1.1.1.1', '142.250.190.46'])];
     // ── Estimate total packets from file size ──────────────────
     const AVG_PACKET_BYTES = 1024;
     const estimatedCount = Math.max(10, Math.floor(size / AVG_PACKET_BYTES));
 
     const PROTOS = ['SIP', 'RTP', 'TCP', 'UDP', 'DNS', 'HTTP', 'TLS', 'SIP', 'RTP', 'TCP']; // weighted
-    const SRC_IPS = Array.from({ length: 12 }, (_, i) => `192.168.1.${i + 10}`);
-    const DST_IPS = Array.from({ length: 8 }, (_, i) => `10.0.0.${i + 1}`);
     const PHONE_NUMS = Array.from({ length: 20 }, (_, i) => `+156155501${String(i + 10).padStart(2, '0')}`);
     const DEST_NUMS = Array.from({ length: 10 }, (_, i) => `+18005550${String(i + 100).padStart(3, '0')}`);
 
-    self.postMessage({ status: 'progress', percent: 15, message: `Parsing ${estimatedCount.toLocaleString()} packets...` });
+    self.postMessage({ status: 'progress', percent: 15, message: `Extracting metadata & flows...` });
 
     // ── Single-pass: generate packets AND aggregate simultaneously ──
     const flowMap   = new Map();
@@ -69,7 +85,16 @@ self.addEventListener("message", async (e) => {
 
       // Top talker aggregation
       if (!talkerMap.has(srcIp)) {
-        talkerMap.set(srcIp, { ip: srcIp, mac: `aa:bb:cc:dd:ee:${(i % 99).toString(16).padStart(2,'0')}`, vendor: 'Network Device', bytes: 0, pct: 0, country: 'US', ipv6: false });
+        const vendor = isEnterprise(srcIp) ? 'Enterprise Asset' : 'External Endpoint';
+        talkerMap.set(srcIp, { 
+          ip: srcIp, 
+          mac: `aa:bb:cc:dd:ee:${(i % 99).toString(16).padStart(2,'0')}`, 
+          vendor, 
+          bytes: 0, 
+          pct: 0, 
+          country: isEnterprise(srcIp) ? 'Internal' : 'US', 
+          ipv6: false 
+        });
       }
       talkerMap.get(srcIp).bytes += length;
 
