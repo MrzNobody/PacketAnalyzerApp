@@ -59,7 +59,7 @@ export default function TCPLadderDiagram({ onClose }) {
         <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border-color)] shrink-0">
           <div>
             <h3 className="text-[16px] font-bold text-[var(--text-color)]">TCP Stream Ladder Diagram</h3>
-            <p className="text-[12px] text-[var(--text-secondary)] mt-0.5">{CLIENT} → {SERVER}</p>
+            <p className="text-[16px] text-[var(--text-secondary)] mt-0.5">{CLIENT} → {SERVER}</p>
           </div>
           <div className="flex gap-2">
             <button
@@ -87,7 +87,7 @@ export default function TCPLadderDiagram({ onClose }) {
           ].map(p => (
             <div key={p.label} className="flex items-center gap-1.5">
               <div className={`w-2.5 h-2.5 rounded-full ${p.color}`} />
-              <span className="text-[11px] text-[var(--text-secondary)]">{p.label}</span>
+              <span className="text-[17px] text-[var(--text-secondary)]">{p.label}</span>
             </div>
           ))}
         </div>
@@ -96,9 +96,9 @@ export default function TCPLadderDiagram({ onClose }) {
         <div className="flex-1 overflow-y-auto px-6 py-4 custom-scroll">
           {/* Column Headers — fixed at top */}
           <div className="sticky top-0 grid grid-cols-[64px_1fr_1fr] gap-0 mb-2 bg-[var(--surface-color)] z-10">
-            <div className="text-[10px] font-bold text-[var(--text-secondary)] uppercase">Time</div>
-            <div className="text-[11px] font-bold text-blue-400 truncate text-center">{CLIENT}</div>
-            <div className="text-[11px] font-bold text-green-400 truncate text-center">{SERVER}</div>
+            <div className="text-[16px] font-bold text-[var(--text-secondary)] uppercase">Time</div>
+            <div className="text-[17px] font-bold text-blue-400 truncate text-center">{CLIENT}</div>
+            <div className="text-[17px] font-bold text-green-400 truncate text-center">{SERVER}</div>
           </div>
 
           <div className="flex flex-col gap-0">
@@ -112,14 +112,14 @@ export default function TCPLadderDiagram({ onClose }) {
                   onMouseLeave={() => setHovered(null)}
                 >
                   {/* Timestamp */}
-                  <div className="text-[10px] font-mono text-[var(--text-secondary)] flex items-center">{pkt.t}s</div>
+                  <div className="text-[16px] font-mono text-[var(--text-secondary)] flex items-center">{pkt.t}s</div>
 
                   {/* Client side */}
                   <div className="flex items-center justify-center relative">
                     {isClient && (
                       <div className="flex items-center gap-2 w-full justify-end pr-4">
-                        <span className={`text-[11px] font-bold ${flagColors[pkt.flags] ?? 'text-[var(--text-secondary)]'}`}>{pkt.flags}</span>
-                        <span className="text-[10px] text-[var(--text-secondary)] max-w-[120px] truncate">{pkt.size > 0 ? `${pkt.size}B` : ''}</span>
+                        <span className={`text-[17px] font-bold ${flagColors[pkt.flags] ?? 'text-[var(--text-secondary)]'}`}>{pkt.flags}</span>
+                        <span className="text-[16px] text-[var(--text-secondary)] max-w-[120px] truncate">{pkt.size > 0 ? `${pkt.size}B` : ''}</span>
                         {/* Arrow right */}
                         <div className="flex items-center">
                           <div className="h-px w-8 bg-blue-400"></div>
@@ -134,8 +134,8 @@ export default function TCPLadderDiagram({ onClose }) {
                           <div className="w-0 h-0 border-y-[4px] border-y-transparent border-r-[6px] border-r-green-400"></div>
                           <div className="h-px w-8 bg-green-400"></div>
                         </div>
-                        <span className="text-[10px] text-[var(--text-secondary)]">{pkt.size > 0 ? `${pkt.size}B` : ''}</span>
-                        <span className={`text-[11px] font-bold ${flagColors[pkt.flags] ?? 'text-[var(--text-secondary)]'}`}>{pkt.flags}</span>
+                        <span className="text-[16px] text-[var(--text-secondary)]">{pkt.size > 0 ? `${pkt.size}B` : ''}</span>
+                        <span className={`text-[17px] font-bold ${flagColors[pkt.flags] ?? 'text-[var(--text-secondary)]'}`}>{pkt.flags}</span>
                       </div>
                     )}
                   </div>
@@ -143,7 +143,7 @@ export default function TCPLadderDiagram({ onClose }) {
                   {/* Server side */}
                   <div className="flex items-center pl-4">
                     {hovered === i && (
-                      <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-1 bg-[var(--surface-color)] border border-[var(--border-color)] rounded-lg px-3 py-2 text-[11px] text-[var(--text-color)] shadow-xl z-20 whitespace-nowrap">
+                      <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-1 bg-[var(--surface-color)] border border-[var(--border-color)] rounded-lg px-3 py-2 text-[17px] text-[var(--text-color)] shadow-xl z-20 whitespace-nowrap">
                         <span className="font-semibold">{pkt.info}</span>
                         <span className="text-[var(--text-secondary)] ml-2">· Seq {pkt.seq}{pkt.ack !== null ? ` · Ack ${pkt.ack}` : ''}</span>
                       </div>

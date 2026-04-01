@@ -7,6 +7,7 @@
 
 @layer base {
   :root {
+    font-size: 16px;
     --bg-color: #F5F5F7;
     --surface-color: #FFFFFF;
     --text-color: #1d1d1f;

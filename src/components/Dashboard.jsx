@@ -14,7 +14,7 @@ import VoiceAnalyticsPane from './VoiceAnalyticsPane';
 import TCPLadderDiagram from './TCPLadderDiagram';
 import { LayoutGrid, PanelLeft, Activity } from 'lucide-react';
 
-const PANE_CARD = 'bg-[var(--surface-color)] border border-[var(--border-color)] rounded-[12px] overflow-hidden flex flex-col transition-shadow hover:shadow-md';
+const PANE_CARD = 'bg-[var(--surface-color)] border border-[var(--border-color)] rounded-[12px] overflow-hidden flex flex-col transition-shadow hover:shadow-md min-h-[500px]';
 
 export default function Dashboard({ activeTab }) {
   const { session } = useData();
@@ -52,7 +52,7 @@ export default function Dashboard({ activeTab }) {
 
       {/* Layout Toggle Bar */}
       <div className="flex items-center gap-3 px-5 py-2 border-b border-[var(--border-color)] bg-[var(--surface-color)] shrink-0">
-        <span className="text-[11px] font-semibold uppercase tracking-widest text-[var(--text-secondary)]">Layout:</span>
+        <span className="text-[17px] font-semibold uppercase tracking-widest text-[var(--text-secondary)]">Layout:</span>
         <div className="flex gap-1 bg-[var(--bg-color)] border border-[var(--border-color)] rounded-lg p-0.5">
           {[
             { mode: 'sidebar', Icon: PanelLeft, title: 'Sidebar Mode (Default)' },
@@ -68,7 +68,7 @@ export default function Dashboard({ activeTab }) {
         {/* TCP Ladder Quick Launch */}
         <button
           onClick={() => setShowLadder(true)}
-          className="ml-auto flex items-center gap-1.5 text-[12px] font-medium text-[var(--text-secondary)] hover:text-blue-500 border border-[var(--border-color)] px-3 py-1.5 rounded-lg hover:border-blue-500/40 transition-all"
+          className="ml-auto flex items-center gap-1.5 text-[16px] font-medium text-[var(--text-secondary)] hover:text-blue-500 border border-[var(--border-color)] px-3 py-1.5 rounded-lg hover:border-blue-500/40 transition-all"
         >
           <Activity className="w-3.5 h-3.5" />
           TCP Stream Ladder

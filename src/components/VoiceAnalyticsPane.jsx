@@ -143,10 +143,10 @@ export default function VoiceAnalyticsPane() {
             </div>
             <div>
               <h2 className="text-[17px] font-bold text-[var(--text-color)]">Voice &amp; SIP Analytics</h2>
-              <p className="text-[12px] text-[var(--text-secondary)] mt-0.5">Automated MOS Quality analysis and SIP signaling inspection</p>
+              <p className="text-[16px] text-[var(--text-secondary)] mt-0.5">Automated MOS Quality analysis and SIP signaling inspection</p>
             </div>
           </div>
-          <button className="flex items-center gap-1.5 px-3 py-1.5 bg-[var(--bg-color)] border border-[var(--border-color)] rounded-lg text-[12px] font-semibold text-[var(--text-secondary)] hover:text-[var(--text-color)] transition-colors">
+          <button className="flex items-center gap-1.5 px-3 py-1.5 bg-[var(--bg-color)] border border-[var(--border-color)] rounded-lg text-[16px] font-semibold text-[var(--text-secondary)] hover:text-[var(--text-color)] transition-colors">
             Export Voice CAP
           </button>
         </div>
@@ -158,8 +158,8 @@ export default function VoiceAnalyticsPane() {
         {/* ── 1. SIP Method Distribution ── */}
         <div className="bg-[var(--surface-color)] border border-[var(--border-color)] rounded-xl p-4">
           <div className="flex justify-between items-center mb-3">
-            <span className="text-[11px] font-bold text-[var(--text-secondary)] uppercase tracking-wider">SIP Method Distribution</span>
-            <span className="text-[10px] text-blue-500 font-bold">{totalMethods} Packets</span>
+            <span className="text-[17px] font-bold text-[var(--text-secondary)] uppercase tracking-wider">SIP Method Distribution</span>
+            <span className="text-[16px] text-blue-500 font-bold">{totalMethods} Packets</span>
           </div>
           <div className="h-2 w-full bg-[var(--bg-color)] rounded-full overflow-hidden flex mb-3">
             {sipMethodDistribution.map((m) => (
@@ -175,8 +175,8 @@ export default function VoiceAnalyticsPane() {
             {sipMethodDistribution.map((m) => (
               <div key={m.method} className="flex items-center gap-1.5">
                 <div className={`w-2 h-2 rounded-full ${m.color}`} />
-                <span className="text-[10px] font-medium text-[var(--text-secondary)]">{m.method}</span>
-                <span className="text-[10px] font-mono text-[var(--text-secondary)] opacity-60">{m.count}</span>
+                <span className="text-[16px] font-medium text-[var(--text-secondary)]">{m.method}</span>
+                <span className="text-[16px] font-mono text-[var(--text-secondary)] opacity-60">{m.count}</span>
               </div>
             ))}
           </div>
@@ -189,29 +189,29 @@ export default function VoiceAnalyticsPane() {
             <div className="px-5 py-4 border-b border-[var(--border-color)] flex items-center justify-between bg-[var(--bg-color)]/30">
               <div className="flex items-center gap-2">
                 <Activity className="w-4 h-4 text-blue-500" />
-                <h3 className="font-semibold text-[13px] text-[var(--text-color)]">
+                <h3 className="font-semibold text-[17px] text-[var(--text-color)]">
                   SIP Signaling Ladder — Session {selectedCallId}
                 </h3>
               </div>
               <div className="flex items-center gap-4">
-                <div className="flex flex-col items-end text-[10px] text-[var(--text-secondary)]">
+                <div className="flex flex-col items-end text-[16px] text-[var(--text-secondary)]">
                   <span className="font-bold text-[var(--text-color)] uppercase tracking-tighter">User-Agent</span>
                   <span className="font-mono">{activeCall?.userAgent}</span>
                 </div>
-                <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[var(--text-secondary)] bg-[var(--bg-color)] border border-[var(--border-color)] px-2 py-0.5 rounded-md">
+                <span className="text-[16px] font-mono font-bold uppercase tracking-wider text-[var(--text-secondary)] bg-[var(--bg-color)] border border-[var(--border-color)] px-2 py-0.5 rounded-md">
                   {activeCall?.status === 'Completed' ? 'Flow: RTP G.711u' : 'Flow: Control Only'}
                 </span>
               </div>
             </div>
 
             <div className="p-8 relative min-h-[360px]">
-              <div className="flex justify-between text-[11px] font-bold text-[var(--text-secondary)] mb-10 px-12 uppercase tracking-widest">
+              <div className="flex justify-between text-[17px] font-bold text-[var(--text-secondary)] mb-10 px-12 uppercase tracking-widest">
                 <div className="flex flex-col items-center">
-                  <span className="text-[13px] font-mono text-[var(--text-color)]">{activeCall?.srcIp || 'Internal'}</span>
+                  <span className="text-[17px] font-mono text-[var(--text-color)]">{activeCall?.srcIp || 'Internal'}</span>
                   <span className="text-[9px] mt-1 text-blue-400 font-medium whitespace-nowrap tracking-normal">Technical Source / IP</span>
                 </div>
                 <div className="flex flex-col items-center">
-                  <span className="text-[13px] font-mono text-[var(--text-color)]">{activeCall?.dstIp || 'Gateway'}</span>
+                  <span className="text-[17px] font-mono text-[var(--text-color)]">{activeCall?.dstIp || 'Gateway'}</span>
                   <span className="text-[9px] mt-1 text-purple-400 font-medium whitespace-nowrap tracking-normal">Technical Destination / IP</span>
                 </div>
               </div>
@@ -228,7 +228,7 @@ export default function VoiceAnalyticsPane() {
                           className="absolute right-0 w-3 h-4 bg-blue-600" 
                           style={{ clipPath: 'polygon(0 0, 100% 50%, 0 100%)' }}
                         />
-                        <span className="absolute w-full -top-6 text-center text-[13px] font-bold text-[var(--text-color)]">{step.label}</span>
+                        <span className="absolute w-full -top-6 text-center text-[17px] font-bold text-[var(--text-color)]">{step.label}</span>
                       </div>
                     )}
                     {step.dir === 'left' && (
@@ -237,12 +237,12 @@ export default function VoiceAnalyticsPane() {
                           className="absolute left-0 w-3 h-4 bg-purple-600" 
                           style={{ clipPath: 'polygon(100% 0, 0 50%, 100% 100%)' }}
                         />
-                        <span className="absolute w-full -top-6 text-center text-[13px] font-bold text-[var(--text-secondary)]">{step.label}</span>
+                        <span className="absolute w-full -top-6 text-center text-[17px] font-bold text-[var(--text-secondary)]">{step.label}</span>
                       </div>
                     )}
                     {step.dir === 'bidir' && (
                       <div className="absolute left-0 w-[100%] h-3 bg-green-500/20 border-y border-dashed border-green-500/50 flex items-center justify-center">
-                        <span className="absolute -top-5 text-center text-[13px] font-black text-green-500">{step.label}</span>
+                        <span className="absolute -top-5 text-center text-[17px] font-black text-green-500">{step.label}</span>
                       </div>
                     )}
                   </div>
@@ -257,8 +257,8 @@ export default function VoiceAnalyticsPane() {
               {/* Header */}
               <div className="px-4 py-3 border-b border-[var(--border-color)] bg-[var(--bg-color)]/30 flex items-center gap-2 shrink-0">
                 <BookUser className="w-4 h-4 text-red-500" />
-                <h3 className="text-[13px] font-semibold text-[var(--text-color)]">Failed SIP Sessions</h3>
-                <span className="ml-auto text-[10px] font-mono text-[var(--text-secondary)] bg-[var(--bg-color)] border border-[var(--border-color)] px-1.5 py-0.5 rounded-md">
+                <h3 className="text-[17px] font-semibold text-[var(--text-color)]">Failed SIP Sessions</h3>
+                <span className="ml-auto text-[16px] font-mono text-[var(--text-secondary)] bg-[var(--bg-color)] border border-[var(--border-color)] px-1.5 py-0.5 rounded-md">
                   {groupedFailedCalls.length} issues
                 </span>
               </div>
@@ -276,28 +276,28 @@ export default function VoiceAnalyticsPane() {
                     {/* From: → To: */}
                     <div className="flex flex-col gap-1 mb-2 relative">
                       {call.attempts > 1 && (
-                        <div className="absolute top-0 right-0 bg-red-500/15 border border-red-500/20 px-1.5 py-0.5 rounded text-[10px] font-bold text-red-500">
+                        <div className="absolute top-0 right-0 bg-red-500/15 border border-red-500/20 px-1.5 py-0.5 rounded text-[16px] font-bold text-red-500">
                           {call.attempts} attempts
                         </div>
                       )}
                       <div className="flex items-center gap-2">
                         <span className="text-[9px] font-bold text-red-500/60 uppercase w-8">From:</span>
-                        <span className="text-[13px] font-bold font-mono text-[var(--text-color)] truncate pr-16">{call.caller}</span>
+                        <span className="text-[17px] font-bold font-mono text-[var(--text-color)] truncate pr-16">{call.caller}</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="text-[9px] font-bold text-red-500/60 uppercase w-8">To:</span>
-                        <span className="text-[13px] font-bold font-mono text-[var(--text-color)] truncate pr-16">{call.callee}</span>
+                        <span className="text-[17px] font-bold font-mono text-[var(--text-color)] truncate pr-16">{call.callee}</span>
                       </div>
                     </div>
 
                     {/* Meta row */}
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${
+                      <span className={`text-[16px] font-bold px-1.5 py-0.5 rounded-full ${
                         call.status === 'Busy' ? 'bg-orange-500/10 text-orange-500' : 'bg-red-500/10 text-red-500'
                       }`}>
                         {call.status}
                       </span>
-                      <span className="text-[10px] text-[var(--text-secondary)] font-mono ml-auto">{call.time}</span>
+                      <span className="text-[16px] text-[var(--text-secondary)] font-mono ml-auto">{call.time}</span>
                     </div>
                   </button>
                 ))}
@@ -305,7 +305,7 @@ export default function VoiceAnalyticsPane() {
 
               {/* Footer */}
               <div className="px-4 py-2 border-t border-[var(--border-color)] bg-[var(--bg-color)]/20 shrink-0">
-                <p className="text-[10px] text-[var(--text-secondary)] text-center">
+                <p className="text-[16px] text-[var(--text-secondary)] text-center">
                   Click any entry to load its SIP ladder
                 </p>
               </div>
@@ -318,8 +318,8 @@ export default function VoiceAnalyticsPane() {
           <div className="px-5 py-4 border-b border-[var(--border-color)] flex items-center justify-between bg-[var(--bg-color)]/30">
             <div className="flex items-center gap-2">
               <History className="w-4 h-4 text-green-500" />
-              <h3 className="font-semibold text-[13px] text-[var(--text-color)]">Call History Analyzer</h3>
-              <span className="text-[10px] font-mono text-[var(--text-secondary)] bg-[var(--bg-color)] border border-[var(--border-color)] px-1.5 py-0.5 rounded-md">
+              <h3 className="font-semibold text-[17px] text-[var(--text-color)]">Call History Analyzer</h3>
+              <span className="text-[16px] font-mono text-[var(--text-secondary)] bg-[var(--bg-color)] border border-[var(--border-color)] px-1.5 py-0.5 rounded-md">
                 {filteredCalls.length} sessions
               </span>
             </div>
@@ -330,7 +330,7 @@ export default function VoiceAnalyticsPane() {
                 placeholder="Search numbers or status..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-8 pr-3 py-1.5 bg-[var(--surface-color)] border border-[var(--border-color)] rounded-lg text-[12px] w-52 focus:outline-none focus:ring-1 focus:ring-blue-500/50"
+                className="pl-8 pr-3 py-1.5 bg-[var(--surface-color)] border border-[var(--border-color)] rounded-lg text-[16px] w-52 focus:outline-none focus:ring-1 focus:ring-blue-500/50"
               />
             </div>
           </div>
@@ -339,13 +339,13 @@ export default function VoiceAnalyticsPane() {
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="bg-[var(--bg-color)]/50 border-b border-[var(--border-color)]">
-                  <th className="px-5 py-2.5 text-[11px] font-bold text-[var(--text-secondary)] uppercase tracking-wider">Start Time</th>
-                  <th className="px-5 py-2.5 text-[11px] font-bold text-[var(--text-secondary)] uppercase tracking-wider">Caller ID</th>
-                  <th className="px-5 py-2.5 text-[11px] font-bold text-[var(--text-secondary)] uppercase tracking-wider">Dialed Number</th>
-                  <th className="px-5 py-2.5 text-[11px] font-bold text-[var(--text-secondary)] uppercase tracking-wider">Status</th>
-                  <th className="px-5 py-2.5 text-[11px] font-bold text-[var(--text-secondary)] uppercase tracking-wider">MOS Score</th>
-                  <th className="px-5 py-2.5 text-[11px] font-bold text-[var(--text-secondary)] uppercase tracking-wider whitespace-nowrap">Avg. Jitter</th>
-                  <th className="px-5 py-2.5 text-[11px] font-bold text-[var(--text-secondary)] uppercase tracking-wider">SIP Flow</th>
+                  <th className="px-5 py-2.5 text-[17px] font-bold text-[var(--text-secondary)] uppercase tracking-wider">Start Time</th>
+                  <th className="px-5 py-2.5 text-[17px] font-bold text-[var(--text-secondary)] uppercase tracking-wider">Caller ID</th>
+                  <th className="px-5 py-2.5 text-[17px] font-bold text-[var(--text-secondary)] uppercase tracking-wider">Dialed Number</th>
+                  <th className="px-5 py-2.5 text-[17px] font-bold text-[var(--text-secondary)] uppercase tracking-wider">Status</th>
+                  <th className="px-5 py-2.5 text-[17px] font-bold text-[var(--text-secondary)] uppercase tracking-wider">MOS Score</th>
+                  <th className="px-5 py-2.5 text-[17px] font-bold text-[var(--text-secondary)] uppercase tracking-wider whitespace-nowrap">Avg. Jitter</th>
+                  <th className="px-5 py-2.5 text-[17px] font-bold text-[var(--text-secondary)] uppercase tracking-wider">SIP Flow</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[var(--border-color)]">
@@ -354,16 +354,16 @@ export default function VoiceAnalyticsPane() {
                     key={call.id}
                     className={`group transition-colors ${selectedCallId === call.id ? 'bg-blue-500/5' : 'hover:bg-[var(--bg-color)]/40'}`}
                   >
-                    <td className="px-5 py-3 text-[12px] font-medium text-[var(--text-secondary)]">{call.time}</td>
-                    <td className="px-5 py-3 text-[13px] font-bold text-[var(--text-color)]">{call.caller}</td>
+                    <td className="px-5 py-3 text-[16px] font-medium text-[var(--text-secondary)]">{call.time}</td>
+                    <td className="px-5 py-3 text-[17px] font-bold text-[var(--text-color)]">{call.caller}</td>
                     <td className="px-5 py-3">
                       <div className="flex items-center gap-2">
                         <ArrowRight className="w-3.5 h-3.5 text-blue-500/50" />
-                        <span className="text-[13px] font-bold text-[var(--text-color)]">{call.callee}</span>
+                        <span className="text-[17px] font-bold text-[var(--text-color)]">{call.callee}</span>
                       </div>
                     </td>
-                    <td className="px-5 py-3 text-[12px]">
-                      <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold uppercase ${
+                    <td className="px-5 py-3 text-[16px]">
+                      <span className={`px-2 py-0.5 rounded-full text-[16px] font-bold uppercase ${
                         call.status === 'Completed' ? 'bg-green-500/10 text-green-600' :
                         call.status === 'Missed' || call.status === 'Forbidden' ? 'bg-red-500/10 text-red-600' : 'bg-orange-500/10 text-orange-600'
                       }`}>
@@ -371,17 +371,17 @@ export default function VoiceAnalyticsPane() {
                       </span>
                     </td>
                     <td className="px-5 py-3">
-                      <div className={`flex items-center gap-1.5 text-[13px] font-black ${getMosColor(call.mos)}`}>
+                      <div className={`flex items-center gap-1.5 text-[17px] font-black ${getMosColor(call.mos)}`}>
                         <Gauge className="w-3.5 h-3.5" />
                         {call.mos}
                       </div>
                     </td>
-                    <td className="px-5 py-3 text-[12px] text-[var(--text-secondary)] font-mono">{call.jitter}</td>
+                    <td className="px-5 py-3 text-[16px] text-[var(--text-secondary)] font-mono">{call.jitter}</td>
                     <td className="px-5 py-3">
                       <button
                         onClick={() => handleViewLadder(call.id)}
                         title={`View SIP flow for session ${call.id}`}
-                        className={`flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg border transition-all ${
+                        className={`flex items-center gap-1.5 text-[17px] font-semibold px-2.5 py-1 rounded-lg border transition-all ${
                           selectedCallId === call.id
                             ? 'bg-blue-500 text-white border-blue-500 shadow-sm'
                             : 'border-[var(--border-color)] text-[var(--text-secondary)] hover:border-blue-500/50 hover:text-blue-500 hover:bg-blue-500/5'

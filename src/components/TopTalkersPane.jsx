@@ -32,7 +32,7 @@ export default function TopTalkersPane() {
     <div className="flex flex-col h-full">
       {/* Pane Header */}
       <div className="flex items-center justify-between px-4 pt-4 pb-2 shrink-0">
-        <h3 className="text-[13px] font-semibold text-[var(--text-color)]">Top Talkers</h3>
+        <h3 className="text-[17px] font-semibold text-[var(--text-color)]">Top Talkers</h3>
         <div className="flex items-center gap-1 bg-[var(--bg-color)] border border-[var(--border-color)] rounded-lg p-0.5">
           <button
             onClick={() => setView('bars')}
@@ -57,17 +57,17 @@ export default function TopTalkersPane() {
           <div key={t.ip} className="group cursor-pointer">
             <div className="flex items-center justify-between mb-1">
               <div className="flex items-center gap-1.5 min-w-0">
-                <span className="text-[10px] text-[var(--text-secondary)] font-mono w-3">{i + 1}</span>
-                <span className={`text-[10px] font-semibold px-1.5 py-0.5 rounded-full ${t.ipv6 ? 'bg-purple-500/15 text-purple-400' : 'bg-blue-500/15 text-blue-400'}`}>
+                <span className="text-[16px] text-[var(--text-secondary)] font-mono w-3">{i + 1}</span>
+                <span className={`text-[16px] font-semibold px-1.5 py-0.5 rounded-full ${t.ipv6 ? 'bg-purple-500/15 text-purple-400' : 'bg-blue-500/15 text-blue-400'}`}>
                   {t.ipv6 ? 'IPv6' : 'IPv4'}
                 </span>
-                <span className="text-[12px] font-mono text-[var(--text-color)] truncate">{t.ip}</span>
+                <span className="text-[16px] font-mono text-[var(--text-color)] truncate">{t.ip}</span>
                 {t.vendor === 'Enterprise Asset' && (
                   <span className="text-[9px] font-bold bg-green-500/10 text-green-500 px-1.5 py-0.5 rounded-md uppercase tracking-tighter">Enterprise</span>
                 )}
-                <span className="text-[11px] text-[var(--text-secondary)] hidden group-hover:inline">{t.vendor}</span>
+                <span className="text-[17px] text-[var(--text-secondary)] hidden group-hover:inline">{t.vendor}</span>
               </div>
-              <span className="text-[11px] font-semibold text-[var(--text-secondary)] shrink-0">{fmtBytes(t.bytes)}</span>
+              <span className="text-[17px] font-semibold text-[var(--text-secondary)] shrink-0">{fmtBytes(t.bytes)}</span>
             </div>
             <div className="w-full h-2 rounded-full bg-[var(--bg-color)] overflow-hidden">
               <div
@@ -80,11 +80,11 @@ export default function TopTalkersPane() {
 
         {view === 'geo' && (
           <div className="flex-1 flex flex-col gap-2">
-            <div className="rounded-xl border border-[var(--border-color)] bg-[var(--bg-color)] text-center py-8 text-[12px] text-[var(--text-secondary)]">
+            <div className="rounded-xl border border-[var(--border-color)] bg-[var(--bg-color)] text-center py-8 text-[16px] text-[var(--text-secondary)]">
               🌍 Geo-IP Map visualization mounts here (Phase 3 — IP → Country resolution)
             </div>
             {filteredTalkers.map(t => (
-              <div key={t.ip} className="flex items-center justify-between text-[12px]">
+              <div key={t.ip} className="flex items-center justify-between text-[16px]">
                 <span className="font-mono text-[var(--text-color)]">{t.ip}</span>
                 <span className="text-[var(--text-secondary)]">{t.country}</span>
                 <span className="font-semibold text-[var(--text-secondary)]">{fmtBytes(t.bytes)}</span>

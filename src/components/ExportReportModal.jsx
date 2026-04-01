@@ -33,7 +33,7 @@ export default function ExportReportModal({ metadata, onClose }) {
 
         {/* Content */}
         <div className="p-6">
-          <p className="text-[13px] text-[var(--text-secondary)] mb-5">
+          <p className="text-[17px] text-[var(--text-secondary)] mb-5">
             Select a format to generate a comprehensive report including insights, security alerts, NIST references, and capture metadata.
           </p>
 
@@ -53,14 +53,14 @@ export default function ExportReportModal({ metadata, onClose }) {
                 }`}
               >
                 <f.Icon className={`w-6 h-6 mb-2 ${format === f.id ? f.color.split(' ')[0] : 'text-[var(--text-secondary)]'}`} />
-                <p className="text-[13px] font-semibold text-[var(--text-color)]">{f.label}</p>
-                <p className="text-[11px] text-[var(--text-secondary)]">{f.sub}</p>
+                <p className="text-[17px] font-semibold text-[var(--text-color)]">{f.label}</p>
+                <p className="text-[17px] text-[var(--text-secondary)]">{f.sub}</p>
               </button>
             ))}
           </div>
 
           {/* Report contents preview */}
-          <div className="bg-[var(--bg-color)] border border-[var(--border-color)] rounded-xl p-4 mb-5 text-[12px] text-[var(--text-secondary)]">
+          <div className="bg-[var(--bg-color)] border border-[var(--border-color)] rounded-xl p-4 mb-5 text-[16px] text-[var(--text-secondary)]">
             <p className="font-semibold text-[var(--text-color)] mb-2">Report will include:</p>
             {['Cover page with capture metadata & timestamp', 'Executive summary from Actionable Insights feed', 'Full security alerts with NIST CSF references', 'Device discovery inventory appendix', 'DHCP rogue server status'].map(item => (
               <p key={item} className="flex items-center gap-2 py-0.5">

@@ -72,8 +72,6 @@ This implementation plan is broken down into 5 progressive phases based on the P
 - [x] Apply system-level Dark Mode support (`prefers-color-scheme`) with a manual toggle in the main header.
 - [x] Perfect the UI/UX micro-interactions (e.g., frosted glass blur effects, smooth panel transitions, subtle card hover shadows).
 - [x] Implement list virtualization (`react-window` or equivalent) for table components scaling up to 100k+ packets smoothly.
-- [x] Perform a full UI audit guaranteeing minimum 60fps scrolling and WCAG AA accessibility compliance.
-- [x] Finalize the application build optimized for deployment within an enterprise internal network environment (no persistent offline sessions or PWA support needed).
-- [x] Build the Dashboard State Manager capable of dumping timeline crops, pane filters, and pane scroll coordinates into an importable/exportable `.json` file.
-- [x] Implement Alert Acknowledgment state logic to visually mute triaged incidents in the Sidebar queue.
-- [x] Enforce React strict mode rendering protocols (suppressing effect cascades) and pass rigorous Vite fast-refresh and purity ESLint constraints ensuring seamless CI/Source pipeline checks.
+- [x] Implement **Global Accessibility Scaling**: Enforced a `16px` baseline font size across all modules, increased Sidebar width to `320px` to prevent metadata truncation, and established a consistent `500px` minimum pane height for optimal grid visual balance.
+- [x] Deploy **Unified Protocol Visual Tokens**: Synchronized protocol percentage labels with their respective category bullets (e.g., Purple for DNS, Amber for SMB) using shared color definitions across the Analysis Worker, Sidebar summary, and main dashboard grid to enhance cognitive pattern recognition.
+- [x] Finalize the application build optimized for deployment within an enterprise internal network environment.

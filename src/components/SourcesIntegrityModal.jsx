@@ -42,8 +42,8 @@ export default function SourcesIntegrityModal({ onDismiss }) {
       <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/40 backdrop-blur-sm">
         <div className="bg-[var(--surface-color)] border border-[var(--border-color)] rounded-2xl p-8 w-full max-w-sm text-center shadow-2xl">
           <CheckCircle2 className="w-8 h-8 text-green-500 mx-auto mb-3" />
-          <p className="text-[15px] font-semibold text-[var(--text-color)]">Knowledge sources are current</p>
-          <p className="text-[12px] text-[var(--text-secondary)] mt-1">Launching Packet Assistant...</p>
+          <p className="text-[17px] font-semibold text-[var(--text-color)]">Knowledge sources are current</p>
+          <p className="text-[16px] text-[var(--text-secondary)] mt-1">Launching Packet Assistant...</p>
         </div>
       </div>
     );
@@ -62,7 +62,7 @@ export default function SourcesIntegrityModal({ onDismiss }) {
           </div>
           <div>
             <h3 className="text-[17px] font-bold text-[var(--text-color)]">Knowledge Sources Need Review</h3>
-            <p className="text-[12px] text-[var(--text-secondary)] mt-0.5">
+            <p className="text-[16px] text-[var(--text-secondary)] mt-0.5">
               Some registry data hasn't been verified in over 7 days
             </p>
           </div>
@@ -70,7 +70,7 @@ export default function SourcesIntegrityModal({ onDismiss }) {
 
         {/* Source List */}
         <div className="px-6 py-4">
-          <p className="text-[12px] text-[var(--text-secondary)] mb-3">
+          <p className="text-[16px] text-[var(--text-secondary)] mb-3">
             Packet Assistant uses the following external registries for vendor and port lookups.
             These cannot be fetched live in the browser, but you can manually download updates from the links below.
           </p>
@@ -83,17 +83,17 @@ export default function SourcesIntegrityModal({ onDismiss }) {
                 <div key={s.key} className={`rounded-xl border p-3.5 flex items-center gap-3 ${isStale ? 'border-orange-400/30 bg-orange-400/5' : 'border-[var(--border-color)]'}`}>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <span className="text-[13px] font-semibold text-[var(--text-color)]">{s.name}</span>
-                      {isStale && <span className="text-[10px] font-bold text-orange-400 bg-orange-400/10 px-1.5 py-0.5 rounded-full">Needs Verification</span>}
+                      <span className="text-[17px] font-semibold text-[var(--text-color)]">{s.name}</span>
+                      {isStale && <span className="text-[16px] font-bold text-orange-400 bg-orange-400/10 px-1.5 py-0.5 rounded-full">Needs Verification</span>}
                     </div>
-                    <p className="text-[11px] text-[var(--text-secondary)] mt-0.5">{s.description}</p>
-                    <p className="text-[10px] text-[var(--text-secondary)] mt-1">Last confirmed: <span className="font-medium">{lastConfirmed}</span></p>
+                    <p className="text-[17px] text-[var(--text-secondary)] mt-0.5">{s.description}</p>
+                    <p className="text-[16px] text-[var(--text-secondary)] mt-1">Last confirmed: <span className="font-medium">{lastConfirmed}</span></p>
                   </div>
                   <a
                     href={s.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[11px] font-medium text-blue-500 hover:underline shrink-0 whitespace-nowrap"
+                    className="text-[17px] font-medium text-blue-500 hover:underline shrink-0 whitespace-nowrap"
                   >
                     View Source ↗
                   </a>
@@ -102,7 +102,7 @@ export default function SourcesIntegrityModal({ onDismiss }) {
             })}
           </div>
 
-          <div className="bg-[var(--bg-color)] border border-[var(--border-color)] rounded-xl p-3 text-[12px] text-[var(--text-secondary)] mb-5">
+          <div className="bg-[var(--bg-color)] border border-[var(--border-color)] rounded-xl p-3 text-[16px] text-[var(--text-secondary)] mb-5">
             <strong className="text-[var(--text-color)]">No action is required.</strong> Packet Assistant includes embedded fallback data for both registries. Click "Confirm & Continue" to mark sources as reviewed, or "Skip" to proceed without confirming.
           </div>
 
@@ -110,7 +110,7 @@ export default function SourcesIntegrityModal({ onDismiss }) {
           <div className="flex gap-3">
             <button
               onClick={() => downloadDiagnosticsLog()}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-[var(--border-color)] text-[12px] font-medium text-[var(--text-secondary)] hover:text-[var(--text-color)] transition-colors"
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-[var(--border-color)] text-[16px] font-medium text-[var(--text-secondary)] hover:text-[var(--text-color)] transition-colors"
             >
               <Download className="w-3.5 h-3.5" /> Diagnostics Log
             </button>

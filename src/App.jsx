@@ -26,10 +26,10 @@ function UploadGateway() {
           <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 shadow-xl mb-5">
             <UploadCloud className="w-10 h-10 text-white" />
           </div>
-          <h2 className="text-[32px] font-bold tracking-tight text-[var(--text-color)] mb-2">
+          <h2 className="text-[36px] font-bold tracking-tight text-[var(--text-color)] mb-2">
             Deep packet analysis, simplified.
           </h2>
-          <p className="text-[15px] text-[var(--text-secondary)]">
+          <p className="text-[17px] text-[var(--text-secondary)]">
             Upload a packet capture file. All processing is 100% local — nothing leaves your device.
           </p>
         </div>
@@ -40,13 +40,17 @@ function UploadGateway() {
               ? 'border-blue-500 bg-blue-500/5 scale-[1.015]'
               : 'border-[var(--border-color)] bg-[var(--surface-color)] hover:border-gray-400'
           }`}
-          onDragEnter={() => setIsHovering(true)}
-          onDragLeave={() => setIsHovering(false)}
-          onDrop={handleDrop}
-          onDragOver={e => e.preventDefault()}
+          onDragEnter={(e) => { e.preventDefault(); e.stopPropagation(); setIsHovering(true); }}
+          onDragLeave={(e) => { e.preventDefault(); e.stopPropagation(); setIsHovering(false); }}
+          onDrop={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            handleDrop(e);
+          }}
+          onDragOver={e => { e.preventDefault(); e.stopPropagation(); }}
         >
-          <h3 className="text-[19px] font-semibold text-[var(--text-color)] mb-2">Drag & Drop your capture file</h3>
-          <p className="text-[13px] text-[var(--text-secondary)] mb-6">
+          <h3 className="text-[21px] font-semibold text-[var(--text-color)] mb-2">Drag & Drop your capture file</h3>
+          <p className="text-[17px] text-[var(--text-secondary)] mb-6">
             .pcap · .pcapng · .log · .enc · .txt — max 500 MB — single file only
           </p>
           <input
@@ -64,7 +68,7 @@ function UploadGateway() {
 
         <div className="flex items-center justify-center gap-3 mt-5">
           {['.pcap', '.pcapng', '.log', '.enc', '.txt'].map(ext => (
-            <span key={ext} className="text-[11px] font-mono text-[var(--text-secondary)] bg-[var(--surface-color)] border border-[var(--border-color)] px-2 py-0.5 rounded-md">{ext}</span>
+            <span key={ext} className="text-[17px] font-mono text-[var(--text-secondary)] bg-[var(--surface-color)] border border-[var(--border-color)] px-2 py-0.5 rounded-md">{ext}</span>
           ))}
         </div>
       </div>
@@ -77,12 +81,12 @@ function ParsingOverlay() {
   return (
     <div className="flex-1 flex flex-col items-center justify-center p-6 text-center">
       <Loader2 className="w-12 h-12 text-blue-500 animate-spin mb-6" />
-      <h3 className="text-[22px] font-semibold text-[var(--text-color)] mb-2">Parsing Packet Capture...</h3>
-      <p className="text-[14px] text-[var(--text-secondary)] mb-6 max-w-sm">{session.loading.message}</p>
+      <h3 className="text-[24px] font-semibold text-[var(--text-color)] mb-2">Parsing Packet Capture...</h3>
+      <p className="text-[16px] text-[var(--text-secondary)] mb-6 max-w-sm">{session.loading.message}</p>
       <div className="w-72 h-2 bg-[var(--bg-color)] border border-[var(--border-color)] rounded-full overflow-hidden">
         <div className="h-full bg-blue-500 transition-all duration-300 ease-out" style={{ width: `${session.loading.percent}%` }} />
       </div>
-      <p className="mt-2 text-[12px] text-[var(--text-secondary)] font-mono">{session.loading.percent}%</p>
+      <p className="mt-2 text-[16px] text-[var(--text-secondary)] font-mono">{session.loading.percent}%</p>
     </div>
   );
 }

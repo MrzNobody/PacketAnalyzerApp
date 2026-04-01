@@ -135,10 +135,10 @@ export default function DeviceDiscoveryPane() {
       <div className="px-4 pt-4 pb-2 shrink-0">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <h3 className="text-[13px] font-semibold text-[var(--text-color)]">Device Discovery</h3>
+            <h3 className="text-[17px] font-semibold text-[var(--text-color)]">Device Discovery</h3>
             <div className="flex gap-1">
               {['CDP', 'LLDP', 'FDP'].map(p => (
-                <span key={p} className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${protoColors[p]}`}>{p}</span>
+                <span key={p} className={`text-[16px] font-bold px-1.5 py-0.5 rounded-full ${protoColors[p]}`}>{p}</span>
               ))}
             </div>
           </div>
@@ -148,7 +148,7 @@ export default function DeviceDiscoveryPane() {
             onClick={handleResolveAll}
             disabled={resolving}
             title="Attempt reverse DNS (PTR) lookups via Cloudflare DoH for all device management IPs"
-            className={`flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg border transition-all ${
+            className={`flex items-center gap-1.5 text-[17px] font-semibold px-2.5 py-1 rounded-lg border transition-all ${
               resolving
                 ? 'border-blue-500/30 text-blue-500 bg-blue-500/5 cursor-not-allowed'
                 : anyResolved
@@ -167,7 +167,7 @@ export default function DeviceDiscoveryPane() {
 
         {/* DoH note — shown after first attempt */}
         {anyResolved && !resolving && (
-          <p className="text-[10px] text-[var(--text-secondary)] mt-1.5">
+          <p className="text-[16px] text-[var(--text-secondary)] mt-1.5">
             PTR results via Cloudflare DoH (1.1.1.1). Private/RFC1918 IPs require an internal DNS server — not resolvable from the browser.
           </p>
         )}
@@ -175,11 +175,11 @@ export default function DeviceDiscoveryPane() {
 
       {/* Table */}
       <div className="flex-1 overflow-auto px-4 pb-4">
-        <table className="w-full border-collapse text-[12px]" style={{ minWidth: 520 }}>
+        <table className="w-full border-collapse text-[16px]" style={{ minWidth: 520 }}>
           <thead>
             <tr className="border-b border-[var(--border-color)]">
               {['Type', 'System Name', 'Hostname (PTR)', 'Port', 'Mgmt IP', 'Platform', 'Version', 'Proto'].map(h => (
-                <th key={h} className="text-left py-2 px-1.5 font-semibold text-[var(--text-secondary)] text-[11px]">{h}</th>
+                <th key={h} className="text-left py-2 px-1.5 font-semibold text-[var(--text-secondary)] text-[17px]">{h}</th>
               ))}
             </tr>
           </thead>
@@ -194,7 +194,7 @@ export default function DeviceDiscoveryPane() {
                   <td className="py-2 px-1.5">
                     <div className="flex items-center gap-1.5">
                       <DeviceIcon type={d.type} />
-                      <span className="text-[11px] text-[var(--text-secondary)]">{d.type}</span>
+                      <span className="text-[17px] text-[var(--text-secondary)]">{d.type}</span>
                     </div>
                   </td>
 
@@ -204,22 +204,22 @@ export default function DeviceDiscoveryPane() {
                   {/* Hostname (PTR resolved) */}
                   <td className="py-2 px-1.5">
                     {!state && (
-                      <span className="text-[11px] text-[var(--text-secondary)] opacity-40 italic">—</span>
+                      <span className="text-[17px] text-[var(--text-secondary)] opacity-40 italic">—</span>
                     )}
                     {status === 'loading' && (
-                      <span className="flex items-center gap-1 text-[11px] text-blue-500">
+                      <span className="flex items-center gap-1 text-[17px] text-blue-500">
                         <Loader2 className="w-3 h-3 animate-spin" /> resolving…
                       </span>
                     )}
                     {status === 'resolved' && (
-                      <span className="flex items-center gap-1 text-[11px] font-mono text-green-500">
+                      <span className="flex items-center gap-1 text-[17px] font-mono text-green-500">
                         <CheckCircle2 className="w-3 h-3 shrink-0" />
                         {state.hostname}
                       </span>
                     )}
                     {status === 'private' && (
                       <span
-                        className="flex items-center gap-1 text-[11px] text-[var(--text-secondary)] italic"
+                        className="flex items-center gap-1 text-[17px] text-[var(--text-secondary)] italic"
                         title="Private/RFC1918 IP — requires internal DNS. Not resolvable via public DoH."
                       >
                         <AlertCircle className="w-3 h-3 shrink-0 text-orange-400" />
@@ -227,7 +227,7 @@ export default function DeviceDiscoveryPane() {
                       </span>
                     )}
                     {status === 'unresolved' && (
-                      <span className="flex items-center gap-1 text-[11px] text-[var(--text-secondary)] italic">
+                      <span className="flex items-center gap-1 text-[17px] text-[var(--text-secondary)] italic">
                         <AlertCircle className="w-3 h-3 shrink-0 opacity-40" />
                         No PTR record
                       </span>
@@ -235,20 +235,20 @@ export default function DeviceDiscoveryPane() {
                   </td>
 
                   {/* Port */}
-                  <td className="py-2 px-1.5 font-mono text-[var(--text-secondary)] text-[11px]">{d.port}</td>
+                  <td className="py-2 px-1.5 font-mono text-[var(--text-secondary)] text-[17px]">{d.port}</td>
 
                   {/* Mgmt IP */}
                   <td className="py-2 px-1.5 font-mono text-[var(--text-color)]">{d.mgmtIp}</td>
 
                   {/* Platform */}
-                  <td className="py-2 px-1.5 text-[var(--text-secondary)] text-[11px]">{d.platform}</td>
+                  <td className="py-2 px-1.5 text-[var(--text-secondary)] text-[17px]">{d.platform}</td>
 
                   {/* Version */}
-                  <td className="py-2 px-1.5 font-mono text-[var(--text-secondary)] text-[11px]">{d.version}</td>
+                  <td className="py-2 px-1.5 font-mono text-[var(--text-secondary)] text-[17px]">{d.version}</td>
 
                   {/* Protocol badge */}
                   <td className="py-2 px-1.5">
-                    <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${protoColors[d.protocol]}`}>{d.protocol}</span>
+                    <span className={`text-[16px] font-bold px-1.5 py-0.5 rounded-full ${protoColors[d.protocol]}`}>{d.protocol}</span>
                   </td>
                 </tr>
               );

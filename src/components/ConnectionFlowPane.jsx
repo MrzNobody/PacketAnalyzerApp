@@ -61,19 +61,19 @@ export default function ConnectionFlowPane({ onOpenLadder }) {
     <div className="flex flex-col h-full">
       {/* Pane Header */}
       <div className="flex items-center justify-between px-4 pt-4 pb-2 shrink-0 gap-3">
-        <h3 className="text-[13px] font-semibold text-[var(--text-color)] shrink-0">Connection Flows</h3>
+        <h3 className="text-[17px] font-semibold text-[var(--text-color)] shrink-0">Connection Flows</h3>
         <input
           type="text"
           placeholder="Filter IP / protocol..."
           value={filter}
           onChange={e => setFilter(e.target.value)}
-          className="flex-1 text-[12px] bg-[var(--bg-color)] border border-[var(--border-color)] rounded-lg px-2.5 py-1 focus:outline-none focus:border-blue-500"
+          className="flex-1 text-[16px] bg-[var(--bg-color)] border border-[var(--border-color)] rounded-lg px-2.5 py-1 focus:outline-none focus:border-blue-500"
         />
       </div>
 
       {/* Scrollable Table */}
       <div className="flex-1 overflow-auto px-4 pb-4">
-        <table className="w-full border-collapse text-[12px]" style={{ minWidth: 520 }}>
+        <table className="w-full border-collapse text-[16px]" style={{ minWidth: 520 }}>
           <thead>
             <tr className="border-b border-[var(--border-color)]">
               {[
@@ -88,7 +88,7 @@ export default function ConnectionFlowPane({ onOpenLadder }) {
                 <th
                   key={i}
                   onClick={() => h.col && toggleSort(h.col)}
-                  className={`text-left py-2 px-1 font-semibold text-[var(--text-secondary)] select-none text-[11px] ${h.col ? 'cursor-pointer hover:text-[var(--text-color)]' : ''}`}
+                  className={`text-left py-2 px-1 font-semibold text-[var(--text-secondary)] select-none text-[17px] ${h.col ? 'cursor-pointer hover:text-[var(--text-color)]' : ''}`}
                 >
                   <span className="flex items-center gap-1">
                     {h.label}
@@ -127,7 +127,7 @@ export default function ConnectionFlowPane({ onOpenLadder }) {
 
                   {/* Protocol */}
                   <td className="py-2 px-1">
-                    <span className={`text-[10px] font-semibold px-1.5 py-0.5 rounded-full ${protoColor[f.proto] ?? 'bg-gray-400/10 text-gray-400'}`}>
+                    <span className={`text-[16px] font-semibold px-1.5 py-0.5 rounded-full ${protoColor[f.proto] ?? 'bg-gray-400/10 text-gray-400'}`}>
                       {f.proto}
                     </span>
                   </td>
@@ -168,7 +168,7 @@ export default function ConnectionFlowPane({ onOpenLadder }) {
                 {expanded === f.id && (
                   <tr key={`${f.id}-detail`} className="bg-[var(--bg-color)]">
                     <td colSpan={7} className="px-4 py-3">
-                      <div className="grid grid-cols-4 gap-3 text-[11px]">
+                      <div className="grid grid-cols-4 gap-3 text-[17px]">
                         <div>
                           <p className="text-[var(--text-secondary)]">TCP Flags</p>
                           <p className="font-semibold text-[var(--text-color)]">{f.flags}</p>

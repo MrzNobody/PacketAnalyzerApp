@@ -34,8 +34,8 @@ export default function DHCPPane() {
         <div className="mx-4 mt-4 flex items-start gap-3 bg-red-500/10 border border-red-500/40 rounded-xl p-4 shrink-0">
           <ShieldAlert className="w-6 h-6 text-red-500 shrink-0 mt-0.5" />
           <div>
-            <p className="text-[13px] font-bold text-red-500">⚠ Rogue DHCP Server Detected — Possible MitM Attack</p>
-            <p className="text-[12px] text-red-400/80 mt-0.5">
+            <p className="text-[17px] font-bold text-red-500">⚠ Rogue DHCP Server Detected — Possible MitM Attack</p>
+            <p className="text-[16px] text-red-400/80 mt-0.5">
               Multiple DHCP servers are issuing OFFERs. A device at <span className="font-mono font-semibold">192.168.1.254</span> (Unknown Vendor) is acting as an unauthorized DHCP server.
             </p>
           </div>
@@ -43,30 +43,30 @@ export default function DHCPPane() {
       )}
 
       <div className="px-4 pt-4 pb-2 shrink-0">
-        <h3 className="text-[13px] font-semibold text-[var(--text-color)]">DHCP Monitor & Rogue Detection</h3>
+        <h3 className="text-[17px] font-semibold text-[var(--text-color)]">DHCP Monitor & Rogue Detection</h3>
       </div>
 
       {/* DORA Sequence Counters */}
       <div className="px-4 pb-3 shrink-0">
-        <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--text-secondary)] mb-2">DORA Sequence Counters</p>
+        <p className="text-[16px] font-semibold uppercase tracking-widest text-[var(--text-secondary)] mb-2">DORA Sequence Counters</p>
         <div className="grid grid-cols-4 gap-2">
           {DORA_STEPS.map((step, i) => (
             <div key={step} className={`rounded-xl border p-3 text-center ${i < DORA_STEPS.length - 1 ? 'border-[var(--border-color)]' : rogueDetected ? 'border-green-400/30 bg-green-400/5' : 'border-[var(--border-color)]'}`}>
-              <p className={`text-[10px] font-bold uppercase tracking-wider ${DORA_COLORS[i].split(' ')[0]}`}>{step}</p>
-              <p className="text-[22px] font-bold text-[var(--text-color)]">{MOCK_DHCP.counters[DORA_KEYS[i]]}</p>
+              <p className={`text-[16px] font-bold uppercase tracking-wider ${DORA_COLORS[i].split(' ')[0]}`}>{step}</p>
+              <p className="text-[24px] font-bold text-[var(--text-color)]">{MOCK_DHCP.counters[DORA_KEYS[i]]}</p>
             </div>
           ))}
         </div>
         {/* NAK pill */}
         <div className="mt-2 flex items-center gap-2">
-          <span className="text-[10px] font-semibold uppercase tracking-widest text-[var(--text-secondary)]">NAK</span>
-          <span className="bg-red-400/10 text-red-400 text-[12px] font-bold px-2 py-0.5 rounded-full">{MOCK_DHCP.counters.nak} refused</span>
+          <span className="text-[16px] font-semibold uppercase tracking-widest text-[var(--text-secondary)]">NAK</span>
+          <span className="bg-red-400/10 text-red-400 text-[16px] font-bold px-2 py-0.5 rounded-full">{MOCK_DHCP.counters.nak} refused</span>
         </div>
       </div>
 
       {/* DHCP Servers Section */}
       <div className="px-4 pb-3">
-        <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--text-secondary)] mb-2">Active DHCP Servers</p>
+        <p className="text-[16px] font-semibold uppercase tracking-widest text-[var(--text-secondary)] mb-2">Active DHCP Servers</p>
         <div className="flex flex-col gap-2">
           {servers.map(server => (
             <div key={server.ip} className={`flex items-center gap-3 rounded-xl border px-3 py-2.5 ${server.isRogue ? 'border-red-500/40 bg-red-500/5' : 'border-[var(--border-color)] bg-[var(--bg-color)]'}`}>
@@ -75,12 +75,12 @@ export default function DHCPPane() {
                 : <CheckCircle2 className="w-4 h-4 text-green-400 shrink-0" />
               }
               <div className="flex-1 min-w-0">
-                <p className="text-[12px] font-semibold text-[var(--text-color)] font-mono">{server.ip}</p>
-                <p className="text-[11px] text-[var(--text-secondary)]">{server.mac} · {server.vendor}</p>
+                <p className="text-[16px] font-semibold text-[var(--text-color)] font-mono">{server.ip}</p>
+                <p className="text-[17px] text-[var(--text-secondary)]">{server.mac} · {server.vendor}</p>
               </div>
               <div className="text-right shrink-0">
-                <p className="text-[12px] font-mono text-[var(--text-secondary)]">{server.offers} OFFERs</p>
-                {server.isRogue && <p className="text-[10px] font-bold text-red-500">ROGUE</p>}
+                <p className="text-[16px] font-mono text-[var(--text-secondary)]">{server.offers} OFFERs</p>
+                {server.isRogue && <p className="text-[16px] font-bold text-red-500">ROGUE</p>}
               </div>
             </div>
           ))}
@@ -89,8 +89,8 @@ export default function DHCPPane() {
 
       {/* DHCP Clients */}
       <div className="px-4 pb-4">
-        <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--text-secondary)] mb-2">DHCP Clients</p>
-        <table className="w-full text-[11px] border-collapse">
+        <p className="text-[16px] font-semibold uppercase tracking-widest text-[var(--text-secondary)] mb-2">DHCP Clients</p>
+        <table className="w-full text-[17px] border-collapse">
           <thead>
             <tr className="border-b border-[var(--border-color)]">
               {['MAC', 'Vendor', 'Assigned IP', 'Server', 'State'].map(h => (
@@ -106,7 +106,7 @@ export default function DHCPPane() {
                 <td className="py-1.5 px-1 font-mono">{c.assignedIp ?? <span className="text-red-400">None</span>}</td>
                 <td className="py-1.5 px-1 font-mono text-[var(--text-secondary)]">{c.serverIp}</td>
                 <td className="py-1.5 px-1">
-                  <span className={`font-bold px-1.5 py-0.5 rounded-full text-[10px] ${c.state === 'ACK' ? 'text-green-400 bg-green-400/10' : 'text-red-400 bg-red-400/10'}`}>
+                  <span className={`font-bold px-1.5 py-0.5 rounded-full text-[16px] ${c.state === 'ACK' ? 'text-green-400 bg-green-400/10' : 'text-red-400 bg-red-400/10'}`}>
                     {c.state}
                   </span>
                 </td>

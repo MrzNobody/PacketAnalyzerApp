@@ -28,8 +28,8 @@ export default function OUIInventoryPane() {
   return (
     <div className="flex flex-col h-full">
       <div className="px-4 pt-4 pb-2 shrink-0 flex items-center justify-between">
-        <h3 className="text-[13px] font-semibold text-[var(--text-color)]">OUI Hardware Asset Inventory</h3>
-        <span className="text-[11px] text-[var(--text-secondary)]">IEEE OUI Registry</span>
+        <h3 className="text-[17px] font-semibold text-[var(--text-color)]">OUI Hardware Asset Inventory</h3>
+        <span className="text-[17px] text-[var(--text-secondary)]">IEEE OUI Registry</span>
       </div>
 
       <div className="flex-1 overflow-y-auto px-4 pb-4 flex flex-col gap-2 custom-scroll">
@@ -44,23 +44,23 @@ export default function OUIInventoryPane() {
           >
             <div className="flex items-center gap-3 mb-2">
               {/* Colored OUI circle */}
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white text-[10px] font-bold shrink-0 ${VENDOR_COLORS[i % VENDOR_COLORS.length]}`}>
+              <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white text-[16px] font-bold shrink-0 ${VENDOR_COLORS[i % VENDOR_COLORS.length]}`}>
                 {item.vendor.slice(0, 2).toUpperCase()}
               </div>
 
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-1.5">
-                  <p className="text-[13px] font-semibold text-[var(--text-color)] truncate">{item.vendor}</p>
+                  <p className="text-[17px] font-semibold text-[var(--text-color)] truncate">{item.vendor}</p>
                   {item.spoofFlag && (
                     <ShieldAlert className="w-4 h-4 text-red-500 shrink-0" />
                   )}
                 </div>
-                <p className="text-[11px] font-mono text-[var(--text-secondary)]">{item.oui}:xx:xx:xx</p>
+                <p className="text-[17px] font-mono text-[var(--text-secondary)]">{item.oui}:xx:xx:xx</p>
               </div>
 
               <div className="text-right shrink-0">
                 <p className="text-[17px] font-bold text-[var(--text-color)]">{item.count}</p>
-                <p className="text-[10px] text-[var(--text-secondary)]">device{item.count !== 1 ? 's' : ''}</p>
+                <p className="text-[16px] text-[var(--text-secondary)]">device{item.count !== 1 ? 's' : ''}</p>
               </div>
             </div>
 
@@ -75,12 +75,12 @@ export default function OUIInventoryPane() {
             {/* Cross-reference */}
             {item.discoveredTypes.length > 0 && (
               <div className="flex items-center gap-1.5 flex-wrap">
-                <span className="text-[10px] text-[var(--text-secondary)]">Pane 5 match:</span>
+                <span className="text-[16px] text-[var(--text-secondary)]">Pane 5 match:</span>
                 {item.discoveredTypes.map(t => (
-                  <span key={t} className={`text-[10px] font-semibold px-1.5 py-0.5 rounded-full ${item.spoofFlag ? 'text-red-400 bg-red-400/10' : 'text-blue-400 bg-blue-400/10'}`}>{t}</span>
+                  <span key={t} className={`text-[16px] font-semibold px-1.5 py-0.5 rounded-full ${item.spoofFlag ? 'text-red-400 bg-red-400/10' : 'text-blue-400 bg-blue-400/10'}`}>{t}</span>
                 ))}
                 {item.spoofFlag && (
-                  <span className="text-[10px] font-bold text-red-500 ml-auto">⚠ MAC SPOOF / MitM RISK</span>
+                  <span className="text-[16px] font-bold text-red-500 ml-auto">⚠ MAC SPOOF / MitM RISK</span>
                 )}
               </div>
             )}

@@ -13,7 +13,7 @@ export default function Header({ activeTab, onTabChange, showTabs = false, onExp
         <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-sm">
           <Shield className="w-4 h-4 text-white" />
         </div>
-        <span className="font-semibold text-[15px] tracking-tight text-[var(--text-color)]">Packet Assistant</span>
+        <span className="font-semibold text-[17px] tracking-tight text-[var(--text-color)]">Packet Assistant</span>
       </div>
 
       {/* Tab Switcher (only when dashboard is active) */}

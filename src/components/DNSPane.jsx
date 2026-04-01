@@ -232,7 +232,7 @@ export default function DNSPane() {
       {/* Header */}
       <div className="px-4 pt-4 pb-2 shrink-0">
         <div className="flex items-center justify-between gap-3 mb-2">
-          <h3 className="text-[13px] font-semibold text-[var(--text-color)] shrink-0">DNS Sites &amp; FQDNs</h3>
+          <h3 className="text-[17px] font-semibold text-[var(--text-color)] shrink-0">DNS Sites &amp; FQDNs</h3>
           <div className="flex-1 relative">
             <SearchIcon className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3 h-3 text-[var(--text-secondary)]" />
             <input
@@ -240,14 +240,14 @@ export default function DNSPane() {
               placeholder="Filter domain..."
               value={filter}
               onChange={e => setFilter(e.target.value)}
-              className="w-full text-[12px] bg-[var(--bg-color)] border border-[var(--border-color)] rounded-lg pl-7 pr-3 py-1 focus:outline-none focus:border-blue-500"
+              className="w-full text-[16px] bg-[var(--bg-color)] border border-[var(--border-color)] rounded-lg pl-7 pr-3 py-1 focus:outline-none focus:border-blue-500"
             />
           </div>
         </div>
 
         {/* Stats + Sort row */}
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3 text-[11px]">
+          <div className="flex items-center gap-3 text-[17px]">
             <span className="text-[var(--text-secondary)]">
               <span className="font-bold text-[var(--text-color)]">{dns.length}</span> domains
             </span>
@@ -268,7 +268,7 @@ export default function DNSPane() {
               <button
                 key={k}
                 onClick={() => setSortBy(k)}
-                className={`px-2 py-0.5 rounded text-[11px] font-semibold transition-all ${sortBy === k ? 'bg-[var(--surface-color)] text-blue-500 shadow-sm' : 'text-[var(--text-secondary)] hover:text-[var(--text-color)]'}`}
+                className={`px-2 py-0.5 rounded text-[17px] font-semibold transition-all ${sortBy === k ? 'bg-[var(--surface-color)] text-blue-500 shadow-sm' : 'text-[var(--text-secondary)] hover:text-[var(--text-color)]'}`}
               >
                 {label}
               </button>
@@ -312,11 +312,11 @@ export default function DNSPane() {
 
                 {/* Emoji category badge */}
                 {cat && (
-                  <span className="text-[13px] shrink-0" title={cat.cat}>{cat.emoji}</span>
+                  <span className="text-[17px] shrink-0" title={cat.cat}>{cat.emoji}</span>
                 )}
 
                 {/* FQDN */}
-                <span className="flex-1 text-[12px] font-mono text-[var(--text-color)] truncate">{d.fqdn}</span>
+                <span className="flex-1 text-[16px] font-mono text-[var(--text-color)] truncate">{d.fqdn}</span>
 
                 {/* Inline mini progress bar */}
                 <div className="w-14 h-1 rounded-full bg-[var(--border-color)] overflow-hidden shrink-0 hidden group-hover:block">
@@ -328,26 +328,26 @@ export default function DNSPane() {
 
                 {/* NXDOMAIN / Risk badge */}
                 {d.nxdomain && (
-                  <span className="text-[10px] font-bold text-red-400 bg-red-400/10 border border-red-400/30 px-1.5 py-0.5 rounded-full shrink-0">NXDOMAIN</span>
+                  <span className="text-[16px] font-bold text-red-400 bg-red-400/10 border border-red-400/30 px-1.5 py-0.5 rounded-full shrink-0">NXDOMAIN</span>
                 )}
                 {!d.nxdomain && isRisky && (
-                  <span className={`text-[10px] font-bold border px-1.5 py-0.5 rounded-full shrink-0 ${RISK_STYLES[cat.risk]}`}>
+                  <span className={`text-[16px] font-bold border px-1.5 py-0.5 rounded-full shrink-0 ${RISK_STYLES[cat.risk]}`}>
                     {cat.cat}
                   </span>
                 )}
                 {!d.nxdomain && !isRisky && cat && (
-                  <span className="text-[10px] text-[var(--text-secondary)] bg-[var(--bg-color)] border border-[var(--border-color)] px-1.5 py-0.5 rounded-full shrink-0 hidden group-hover:inline">
+                  <span className="text-[16px] text-[var(--text-secondary)] bg-[var(--bg-color)] border border-[var(--border-color)] px-1.5 py-0.5 rounded-full shrink-0 hidden group-hover:inline">
                     {cat.cat}
                   </span>
                 )}
 
                 {/* Query count */}
-                <span className="text-[11px] text-[var(--text-secondary)] font-mono shrink-0 w-10 text-right">{d.queries}q</span>
+                <span className="text-[17px] text-[var(--text-secondary)] font-mono shrink-0 w-10 text-right">{d.queries}q</span>
               </button>
 
               {/* Expanded detail */}
               {expanded === d.id && (
-                <div className="ml-6 mb-1 rounded-xl bg-[var(--bg-color)] border border-[var(--border-color)] p-3 text-[11px] space-y-3">
+                <div className="ml-6 mb-1 rounded-xl bg-[var(--bg-color)] border border-[var(--border-color)] p-3 text-[17px] space-y-3">
 
                   {/* Meta row */}
                   <div className="flex items-center gap-3 flex-wrap">
@@ -369,7 +369,7 @@ export default function DNSPane() {
 
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <p className="text-[var(--text-secondary)] mb-1.5 font-bold uppercase tracking-wider text-[10px]">
+                      <p className="text-[var(--text-secondary)] mb-1.5 font-bold uppercase tracking-wider text-[16px]">
                         Querying Clients ({d.clients.length})
                       </p>
                       <div className="flex flex-col gap-1">
@@ -382,7 +382,7 @@ export default function DNSPane() {
                       </div>
                     </div>
                     <div>
-                      <p className="text-[var(--text-secondary)] mb-1.5 font-bold uppercase tracking-wider text-[10px]">
+                      <p className="text-[var(--text-secondary)] mb-1.5 font-bold uppercase tracking-wider text-[16px]">
                         Resolved IPs
                       </p>
                       {d.resolvedIps.length
@@ -401,7 +401,7 @@ export default function DNSPane() {
                   {isRisky && (
                     <div className={`flex items-start gap-2 p-2 rounded-lg border ${cat.risk === 'high' ? 'bg-red-500/5 border-red-500/20' : 'bg-orange-500/5 border-orange-500/20'}`}>
                       <AlertTriangle className={`w-3.5 h-3.5 shrink-0 mt-0.5 ${cat.risk === 'high' ? 'text-red-400' : 'text-orange-400'}`} />
-                      <p className={`text-[11px] font-medium ${cat.risk === 'high' ? 'text-red-400' : 'text-orange-400'}`}>
+                      <p className={`text-[17px] font-medium ${cat.risk === 'high' ? 'text-red-400' : 'text-orange-400'}`}>
                         {cat.risk === 'high'
                           ? `High-risk category (${cat.cat}). Investigate the querying host${d.clients.length > 1 ? 's' : ''} immediately.`
                           : `Moderate-risk category (${cat.cat}). Verify if this traffic is policy-compliant.`

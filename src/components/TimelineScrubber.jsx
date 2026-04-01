@@ -30,7 +30,7 @@ export default function TimelineScrubber({ packets = [] }) {
 
   return (
     <div className="h-[64px] px-5 border-b border-[var(--border-color)] bg-[var(--surface-color)] flex flex-col justify-center gap-1 shrink-0">
-      <div className="flex items-center justify-between text-[11px] text-[var(--text-secondary)] font-medium">
+      <div className="flex items-center justify-between text-[17px] text-[var(--text-secondary)] font-medium">
         <span>TRAFFIC TIMELINE — drag to filter window</span>
         <span className="font-mono">{values.length}s capture window</span>
       </div>

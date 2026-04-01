@@ -74,13 +74,13 @@ export default function ProtocolDistributionPane() {
     <div className="flex flex-col h-full">
       {/* Header */}
       <div className="px-4 pt-4 pb-2 shrink-0 flex items-center justify-between">
-        <h3 className="text-[13px] font-semibold text-[var(--text-color)]">Protocol Distribution</h3>
+        <h3 className="text-[17px] font-semibold text-[var(--text-color)]">Protocol Distribution</h3>
         <div className="flex items-center gap-1 bg-[var(--bg-color)] border border-[var(--border-color)] rounded-lg p-0.5">
           {(['packets', 'bytes']).map(mode => (
             <button
               key={mode}
               onClick={() => setSortBy(mode)}
-              className={`px-2 py-0.5 rounded text-[11px] font-semibold transition-all ${sortBy === mode ? 'bg-[var(--surface-color)] text-blue-500 shadow-sm' : 'text-[var(--text-secondary)] hover:text-[var(--text-color)]'}`}
+              className={`px-2 py-0.5 rounded text-[17px] font-semibold transition-all ${sortBy === mode ? 'bg-[var(--surface-color)] text-blue-500 shadow-sm' : 'text-[var(--text-secondary)] hover:text-[var(--text-color)]'}`}
             >
               {mode === 'packets' ? 'Pkts' : 'Bytes'}
             </button>
@@ -103,12 +103,12 @@ export default function ProtocolDistributionPane() {
           </div>
           <div className="flex flex-col gap-1.5 min-w-0">
             <div>
-              <p className="text-[11px] text-[var(--text-secondary)]">Total Packets</p>
+              <p className="text-[17px] text-[var(--text-secondary)]">Total Packets</p>
               <p className="text-[16px] font-bold text-[var(--text-color)] font-mono">{totalPackets.toLocaleString()}</p>
             </div>
             <div>
-              <p className="text-[11px] text-[var(--text-secondary)]">Total Volume</p>
-              <p className="text-[14px] font-bold text-[var(--text-color)] font-mono">{fmtBytes(totalBytes)}</p>
+              <p className="text-[17px] text-[var(--text-secondary)]">Total Volume</p>
+              <p className="text-[16px] font-bold text-[var(--text-color)] font-mono">{fmtBytes(totalBytes)}</p>
             </div>
           </div>
           {/* Legend dots */}
@@ -116,11 +116,14 @@ export default function ProtocolDistributionPane() {
             {protocols.slice(0, 5).map(p => (
               <div key={p.proto} className="flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full shrink-0" style={{ background: p.color }} />
-                <span className="text-[10px] font-mono text-[var(--text-secondary)]">{p.proto}</span>
+                <span className="text-[16px] font-mono text-[var(--text-secondary)]">{p.proto}</span>
+                <span className="text-[14px] font-bold" style={{ color: p.color }}>
+                  {((p.packets / totalPackets) * 100).toFixed(0)}%
+                </span>
               </div>
             ))}
             {protocols.length > 5 && (
-              <span className="text-[10px] text-[var(--text-secondary)] opacity-60">+{protocols.length - 5} more</span>
+              <span className="text-[16px] text-[var(--text-secondary)] opacity-60">+{protocols.length - 5} more</span>
             )}
           </div>
         </div>
@@ -137,10 +140,10 @@ export default function ProtocolDistributionPane() {
               <div className="flex items-center justify-between mb-1">
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full shrink-0" style={{ background: p.color }} />
-                  <span className="text-[12px] font-semibold text-[var(--text-color)] font-mono w-10">{p.proto}</span>
-                  <span className="text-[10px] text-[var(--text-secondary)]">{sharePct}%</span>
+                  <span className="text-[16px] font-semibold text-[var(--text-color)] font-mono w-10">{p.proto}</span>
+                  <span className="text-[16px] font-bold" style={{ color: p.color }}>{sharePct}%</span>
                 </div>
-                <span className="text-[11px] font-mono text-[var(--text-secondary)]">
+                <span className="text-[17px] font-mono text-[var(--text-secondary)]">
                   {sortBy === 'packets' ? p.packets.toLocaleString() + ' pkts' : fmtBytes(p.bytes)}
                 </span>
               </div>
