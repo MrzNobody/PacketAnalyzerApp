@@ -2,7 +2,7 @@
 import { useState, useCallback } from 'react';
 import { useData } from '../context/DataContext';
 import Sidebar from './Sidebar';
-import TimelineScrubber from './TimelineScrubber';
+
 import TopTalkersPane from './TopTalkersPane';
 import ConnectionFlowPane from './ConnectionFlowPane';
 import DNSPane from './DNSPane';
@@ -48,7 +48,7 @@ export default function Dashboard({ activeTab }) {
     <div className="flex-1 overflow-hidden flex flex-col">
       {showLadder && <TCPLadderDiagram onClose={() => setShowLadder(false)} />}
 
-      <TimelineScrubber packets={session.packets} />
+
 
       {/* Layout Toggle Bar */}
       <div className="flex items-center gap-3 px-5 py-2 border-b border-[var(--border-color)] bg-[var(--surface-color)] shrink-0">

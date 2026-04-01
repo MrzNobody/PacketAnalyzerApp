@@ -44,19 +44,6 @@ export default function Header({ activeTab, onTabChange, showTabs = false, onExp
         </div>
       )}
 
-      {/* Global Search — grows to fill remaining space */}
-      {showTabs && (
-        <div className="flex-1 max-w-sm ml-auto relative">
-          <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[var(--text-secondary)]" />
-          <input
-            type="text"
-            value={globalSearch || ''}
-            onChange={(e) => setGlobalSearch(e.target.value)}
-            placeholder="Search IP, MAC, or hostname..."
-            className="w-full bg-[var(--bg-color)] border border-[var(--border-color)] rounded-lg text-sm pl-8 pr-3 py-1.5 focus:outline-none focus:border-blue-500 transition-colors placeholder:text-[var(--text-secondary)]"
-          />
-        </div>
-      )}
 
       {/* Right Controls */}
       <div className={`flex items-center gap-2 ml-auto ${showTabs ? 'ml-0' : ''}`}>
